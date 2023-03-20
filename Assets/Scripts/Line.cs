@@ -22,19 +22,11 @@ public class Line : MonoBehaviour
         lineYPos = moneyRemaining / 100f;
         lineXPos = line.position.x + 0.01f;
 
-        line.position = new Vector2(lineXPos, lineYPos);
+        //line.position = new Vector2(lineXPos, lineYPos);
 
         if (Input.GetKeyDown(KeyCode.F12))
         {
             moneyRemaining += 50f;
         }
-    }
-
-    private void LateUpdate()
-    {
-        //if (line.position.x >= 0)
-        //{
-        //    cam.position = new Vector2(line.position.x, cam.position.y);
-        //}
     }
 }
