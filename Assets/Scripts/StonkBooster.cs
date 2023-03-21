@@ -45,5 +45,19 @@ namespace Owniel
                 Destroy(gameObject);
             }
         }
+
+        private void DestroyOnGameOver()
+        {
+            Destroy(gameObject);
+        }
+
+        private void OnEnable()
+        {
+            EventManager.OnGameOver += DestroyOnGameOver;
+        }
+        private void OnDisable()
+        {
+            EventManager.OnGameOver -= DestroyOnGameOver;
+        }
     }
 }

@@ -12,15 +12,11 @@ namespace Owniel
         [SerializeField] private Transform line;
         [SerializeField] private Transform cam;
 
-        private void Start()
-        {
-            GM.moneyRemaining = 500f;
-        }
 
         private void Update()
         {
             lineYPos = (GM.moneyRemaining / 100f) - 5;
-            lineXPos = line.position.x + 0.01f;
+            lineXPos = line.position.x + (0.01f * GameManager.moveSpeed);
 
             line.position = new Vector2(lineXPos, lineYPos);
 
