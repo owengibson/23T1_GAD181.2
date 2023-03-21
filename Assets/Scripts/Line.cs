@@ -12,17 +12,17 @@ public class Line : MonoBehaviour
 
     private void Start()
     {
-        moneyRemaining = 200f;
+        moneyRemaining = 500f;
     }
 
     private void Update()
     {
         moneyRemaining -= 0.2f; // Lose $0.20 every frame
 
-        lineYPos = moneyRemaining / 100f;
+        lineYPos = (moneyRemaining / 100f) - 5;
         lineXPos = line.position.x + 0.01f;
 
-        //line.position = new Vector2(lineXPos, lineYPos);
+        line.position = new Vector2(lineXPos, lineYPos);
 
         if (Input.GetKeyDown(KeyCode.F12))
         {
