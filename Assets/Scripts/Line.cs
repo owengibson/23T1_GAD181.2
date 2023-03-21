@@ -2,31 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Line : MonoBehaviour
+namespace Owniel
 {
-    [SerializeField] private float moneyRemaining;
-    private float lineYPos;
-    private float lineXPos;
-    [SerializeField] private Transform line;
-    [SerializeField] private Transform cam;
-
-    private void Start()
+    public class Line : MonoBehaviour
     {
-        moneyRemaining = 500f;
-    }
+        [SerializeField] private GameManager GM;
+        private float lineYPos;
+        private float lineXPos;
+        [SerializeField] private Transform line;
+        [SerializeField] private Transform cam;
 
-    private void Update()
-    {
-        moneyRemaining -= 0.2f; // Lose $0.20 every frame
-
-        lineYPos = (moneyRemaining / 100f) - 5;
-        lineXPos = line.position.x + 0.01f;
-
-        line.position = new Vector2(lineXPos, lineYPos);
-
-        if (Input.GetKeyDown(KeyCode.F12))
+        private void Start()
         {
-            moneyRemaining += 50f;
+            GM.moneyRemaining = 500f;
+        }
+
+        private void Update()
+        {
+            lineYPos = (GM.moneyRemaining / 100f) - 5;
+            lineXPos = line.position.x + 0.01f;
+
+            line.position = new Vector2(lineXPos, lineYPos);
+
+            if (Input.GetKeyDown(KeyCode.F12))
+            {
+                GM.moneyRemaining += 50f;
+            }
         }
     }
 }
