@@ -11,12 +11,13 @@ namespace Owniel
 
         public float moneyRemaining;
         public float timeLasted = 0f;
-
-        public static float lossRate = 0.2f; // In dollars per frame ($10/sec at 0.2)
-        public static float boosterWorth = 80f;
-        public static float boosterSpawnWait = 1f;
         public static float bonusStartingMoney = 0f;
         public static float moneyEarned = 0f;
+
+        // Upgradable
+        public static float lossRate = 0.25f; // In dollars per frame ($10/sec at 0.2)
+        public static float boosterWorth = 80f;
+        public static float boosterSpawnWait = 1f;
         public static float moveSpeed = 1f;
 
         [Space(20)]
