@@ -37,11 +37,21 @@ namespace Owniel
         private void Update()
         {
             lifespan -= Time.deltaTime;
-            if (lifespan <= 0) Destroy(gameObject);
+            if (lifespan <= 0)
+            {
+                EventManager.OnBoosterMiss?.Invoke();
+                Destroy(gameObject);
+            }
 
             if (Input.GetKeyDown(chosenKeyCode))
             {
                 EventManager.OnBoosterPickup?.Invoke();
+                Destroy(gameObject);
+            }
+
+            if (Input.anyKeyDown && !Input.GetKeyDown(chosenKeyCode) && !Input.GetKeyDown(KeyCode.F12))
+            {
+                EventManager.OnBoosterMiss?.Invoke();
                 Destroy(gameObject);
             }
         }
