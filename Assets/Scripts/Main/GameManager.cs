@@ -87,6 +87,12 @@ namespace Owniel
             Debug.Log("Money boosted by " + boosterWorth);
         }
 
+        private void DecreaseMoney()
+        {
+            moneyRemaining -= boosterWorth;
+            Debug.Log("Money decreased by " + boosterWorth);
+        }
+
         private void PauseTime()
         {
             Time.timeScale = 0f;
@@ -100,12 +106,14 @@ namespace Owniel
         private void OnEnable()
         {
             EventManager.OnBoosterPickup += BoostMoney;
+            EventManager.OnBoosterMiss += DecreaseMoney;
             EventManager.OnGameOver += PauseTime;
             EventManager.OnGameOver += SetEarnedMoney;
         }
         private void OnDisable()
         {
             EventManager.OnBoosterPickup -= BoostMoney;
+            EventManager.OnBoosterMiss -= DecreaseMoney;
             EventManager.OnGameOver -= PauseTime;
             EventManager.OnGameOver -= SetEarnedMoney;
         }
