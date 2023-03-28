@@ -15,15 +15,19 @@ namespace Owniel
 
         private void Update()
         {
-            lineYPos = (GM.moneyRemaining / 100f) - 5;
-            lineXPos = line.position.x + (0.01f * GameManager.moveSpeed);
-
-            line.position = new Vector2(lineXPos, lineYPos);
-
-            if (Input.GetKeyDown(KeyCode.F12))
+            if (!GameManager.spamClickActive)
             {
-                GM.moneyRemaining += 50f;
+                lineYPos = (GM.moneyRemaining / 100f) - 5;
+                lineXPos = line.position.x + (0.01f * GameManager.moveSpeed);
+
+                line.position = new Vector2(lineXPos, lineYPos);
+
+                if (Input.GetKeyDown(KeyCode.F12))
+                {
+                    GM.moneyRemaining += 50f;
+                }
             }
+            
         }
     }
 }

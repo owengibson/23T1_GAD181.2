@@ -19,18 +19,21 @@ namespace Owniel
         }
         private void Update()
         {
-            timeSinceSpawn += Time.deltaTime;
-
-            if (timeSinceSpawn >= GameManager.boosterSpawnWait && activeBooster == null)
+            if (!GameManager.spamClickActive)
             {
-                Vector2 spawnPos = new Vector2(Random.Range(-600f, 660f), Random.Range(-220f, 270f));
-                Quaternion spawnRot = Quaternion.Euler(0, 0, Random.Range(-30f, 30f));
+                timeSinceSpawn += Time.deltaTime;
 
-                activeBooster = Instantiate(stonkBoosterPrefab, canvas);
-                activeBooster.transform.localPosition = spawnPos;
-                activeBooster.transform.localRotation = spawnRot;
+                if (timeSinceSpawn >= GameManager.boosterSpawnWait && activeBooster == null)
+                {
+                    Vector2 spawnPos = new Vector2(Random.Range(-600f, 660f), Random.Range(-220f, 270f));
+                    Quaternion spawnRot = Quaternion.Euler(0, 0, Random.Range(-30f, 30f));
 
-                timeSinceSpawn = 0f;
+                    activeBooster = Instantiate(stonkBoosterPrefab, canvas);
+                    activeBooster.transform.localPosition = spawnPos;
+                    activeBooster.transform.localRotation = spawnRot;
+
+                    timeSinceSpawn = 0f;
+                }
             }
         }
     }
