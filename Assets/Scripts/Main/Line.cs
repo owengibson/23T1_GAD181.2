@@ -16,15 +16,36 @@ namespace Owniel
         private Material headMat;
         private Material trailMat;
 
+        private Color32[] colors;
+
         private void Start()
         {
             trailMat = GetComponent<TrailRenderer>().material;
-            trailMat.color = GameManager.lineColour;
-            trailMat.SetColor("_EmissionColor", GameManager.lineColour);
-
             headMat = GetComponentInChildren<SpriteRenderer>().material;
-            headMat.color = GameManager.lineColour;
-            headMat.SetColor("_EmissionColor", GameManager.lineColour);
+
+            if (!GameManager.hasRainbowLine)
+            {
+                trailMat.color = GameManager.lineColour;
+                trailMat.SetColor("_EmissionColor", GameManager.lineColour);
+   
+                headMat.color = GameManager.lineColour;
+                headMat.SetColor("_EmissionColor", GameManager.lineColour);
+            }
+            else
+            {
+                colors = new Color32[7]
+                {
+                    new Color32(255, 0, 0, 255), //red
+                    new Color32(255, 165, 0, 255), //orange
+                    new Color32(255, 255, 0, 255), //yellow
+                    new Color32(0, 255, 0, 255), //green
+                    new Color32(0, 0, 255, 255), //blue
+                    new Color32(75, 0, 130, 255), //indigo
+                    new Color32(238, 130, 238, 255), //violet
+                };
+                StartCoroutine(Cycle());
+            }
+
         }
         private void Update()
         {
@@ -42,6 +63,31 @@ namespace Owniel
             }
             
         }
+
+        private IEnumerator Cycle()
+        {
+            //int startColor = 0;
+            //int endColor = 0;
+            //startColor = Random.Range(0, colors.Length);
+            //endColor = Random.Range(0, colors.Length);
+            int i = 0;
+
+            while (GameManager.hasRainbowLine)
+            {
+                for (float interpolant = 0f; interpolant < 1f; interpolant += 0.01f)
+                {
+                    headMat.color = Color.Lerp(colors[i%7], colors[(i + 1)%7], interpolant);
+                    headMat.SetColor("_EmissionColor", Color.Lerp(colors[i%7], colors[(i + 1)%7], interpolant));
+
+                    trailMat.color = Color.Lerp(colors[i%7], colors[(i + 1)%7], interpolant);
+                    trailMat.SetColor("_EmissionColor", Color.Lerp(colors[i%7], colors[(i + 1)%7], interpolant));
+
+                    yield return null;
+                }
+                i++;
+            }
+        }
+
         private void OnApplicationQuit()
         {
             GameManager.lineColour = defaultLineColour;

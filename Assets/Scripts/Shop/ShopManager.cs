@@ -31,7 +31,7 @@ namespace Owniel
         private int turboStartCost = 5000;
         private int longStartCost = 7500;
         private int lineColourCost = 20000;
-        private int rainbowLineColour = 100000;
+        private int rainbowLineCost = 100000;
 
 
         private void Start()
@@ -144,7 +144,12 @@ namespace Owniel
 
         public void BuyRainbowLine()
         {
-            
+            if (GameManager.moneyEarned >= rainbowLineCost && !GameManager.hasRainbowLine)
+            {
+                GameManager.hasRainbowLine = true;
+                GameManager.moneyEarned -= rainbowLineCost;
+                UpdateWalletText();
+            }
         }
 
         private void Update()
