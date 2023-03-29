@@ -15,7 +15,7 @@ namespace Owniel
 
         private void Update()
         {
-            if (!GameManager.spamClickActive)
+            if (!GameManager.spamClickActive && !GM.isGameOver)
             {
                 lineYPos = (GM.moneyRemaining / 100f) - 5;
                 lineXPos = line.position.x + (0.01f * GameManager.moveSpeed);

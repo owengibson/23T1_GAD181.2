@@ -977,10 +977,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afa4f716088697429ccd068ccb2e1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   moneyRemaining: 0
   timeLasted: 0
   moneyRemainingText: {fileID: 1990330876}
   spamClickButton: {fileID: 1856438523}
+  line: {fileID: 859819397}
 --- !u!114 &592875805
 MonoBehaviour:
   m_ObjectHideFlags: 0

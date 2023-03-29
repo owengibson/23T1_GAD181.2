@@ -11,7 +11,7 @@ namespace Owniel
         private float startingMoney = 500f;
         private int spamClickCounter = 0;
 
-
+        public bool isGameOver;
         public float moneyRemaining;
         public float timeLasted = 0f;
         public static float bonusStartingMoney = 0f;
@@ -19,10 +19,10 @@ namespace Owniel
         public static bool spamClickActive = true;
 
         // Upgradable
-        public static float lossRate = 0.25f; // In dollars per frame ($10/sec at 0.2)
+        public static float lossRate = 0.2f; // In dollars per frame ($10/sec at 0.2)
         public static float boosterWorth = 80f;
         public static float boosterSpawnWait = 1f;
-        public static float moveSpeed = 1f;
+        public static float moveSpeed = 0.8f;
         public static float spamClickTime = 3f;
         public static float spamClickValue = 10f;
 
@@ -30,10 +30,12 @@ namespace Owniel
         [Header("References")]
         [SerializeField] private TextMeshProUGUI moneyRemainingText;
         [SerializeField] private GameObject spamClickButton;
+        [SerializeField] private Transform line;
 
 
         private void Start()
         {
+            isGameOver = false;
             ResetStaticValues();
             Time.timeScale = 1f;
             if (spamClickActive)
@@ -89,7 +91,7 @@ namespace Owniel
 
         private void DecreaseMoney()
         {
-            moneyRemaining -= boosterWorth;
+            moneyRemaining -= boosterWorth * 0.6f;
             Debug.Log("Money decreased by " + boosterWorth);
         }
 
@@ -100,7 +102,8 @@ namespace Owniel
 
         private void SetEarnedMoney()
         {
-            moneyEarned = timeLasted * 100;
+            isGameOver = true;
+            moneyEarned = (timeLasted * 100) + (line.position.x * 30);
         }
 
         private void OnEnable()
