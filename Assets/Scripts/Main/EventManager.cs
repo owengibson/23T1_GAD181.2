@@ -9,4 +9,7 @@ public class EventManager : MonoBehaviour
     public static VoidDelegate OnBoosterMiss;
     public static VoidDelegate OnGameOver;
     public static VoidDelegate OnUpgradeBuy;
+
+    public delegate Color ColourDelegate();
+    public static ColourDelegate OnColourPick;
 }

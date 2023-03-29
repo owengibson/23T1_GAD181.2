@@ -17,6 +17,10 @@ namespace Owniel
         [SerializeField] private TextMeshProUGUI turboStartText;
         [SerializeField] private TextMeshProUGUI longStartText;
 
+        [Space(20)]
+        [Header("Other References")]
+        [SerializeField] private GameObject colourPicker;
+
         private static int speedLevel = 1;
         private static int stonkBoostLevel = 1;
         private static int turboStartLevel = 1;
@@ -26,6 +30,9 @@ namespace Owniel
         private int stonkBoostCost = 2000;
         private int turboStartCost = 5000;
         private int longStartCost = 7500;
+        private int lineColourCost = 20000;
+        private int rainbowLineColour = 100000;
+
 
         private void Start()
         {
@@ -123,6 +130,21 @@ namespace Owniel
                 longStartLevel++;
                 UpdateLongStart();
             }
+        }
+
+        public void BuyLineColour()
+        {
+            if (GameManager.moneyEarned >= lineColourCost)
+            {
+                colourPicker.SetActive(true);
+                GameManager.moneyEarned -= lineColourCost;
+                UpdateWalletText();
+            }
+        }
+
+        public void BuyRainbowLine()
+        {
+            
         }
 
         private void Update()

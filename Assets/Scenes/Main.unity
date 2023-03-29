@@ -1235,6 +1235,7 @@ MonoBehaviour:
   GM: {fileID: 592875804}
   line: {fileID: 859819397}
   cam: {fileID: 519420032}
+  defaultLineColour: {r: 0, g: 0.8117647, b: 1, a: 1}
 --- !u!1 &884331613
 GameObject:
   m_ObjectHideFlags: 0

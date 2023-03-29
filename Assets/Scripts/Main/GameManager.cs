@@ -25,6 +25,7 @@ namespace Owniel
         public static float moveSpeed = 0.8f;
         public static float spamClickTime = 3f;
         public static float spamClickValue = 10f;
+        public static Color lineColour = new Color(0f, 207f / 255f, 1f, 1f);
 
         [Space(20)]
         [Header("References")]

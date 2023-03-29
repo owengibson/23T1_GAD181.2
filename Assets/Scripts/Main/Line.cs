@@ -11,8 +11,21 @@ namespace Owniel
         private float lineXPos;
         [SerializeField] private Transform line;
         [SerializeField] private Transform cam;
+        [SerializeField] private Color defaultLineColour;
 
+        private Material headMat;
+        private Material trailMat;
 
+        private void Start()
+        {
+            trailMat = GetComponent<TrailRenderer>().material;
+            trailMat.color = GameManager.lineColour;
+            trailMat.SetColor("_EmissionColor", GameManager.lineColour);
+
+            headMat = GetComponentInChildren<SpriteRenderer>().material;
+            headMat.color = GameManager.lineColour;
+            headMat.SetColor("_EmissionColor", GameManager.lineColour);
+        }
         private void Update()
         {
             if (!GameManager.spamClickActive && !GM.isGameOver)
@@ -28,6 +41,12 @@ namespace Owniel
                 }
             }
             
+        }
+        private void OnApplicationQuit()
+        {
+            GameManager.lineColour = defaultLineColour;
+            headMat.color = defaultLineColour;
+            headMat.SetColor("_EmissionColour", defaultLineColour);
         }
     }
 }
