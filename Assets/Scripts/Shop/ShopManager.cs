@@ -23,13 +23,13 @@ namespace Owniel
 
         private static int speedLevel = 1;
         private static int stonkBoostLevel = 1;
-        private static int turboStartLevel = 1;
-        private static int longStartLevel = 1;
+        private static int clickCoinLevel = 1;
+        private static int ccExtenderLevel = 1;
 
         private int speedCost = 1000;
         private int stonkBoostCost = 2000;
-        private int turboStartCost = 5000;
-        private int longStartCost = 7500;
+        private int clickCoinCost = 5000;
+        private int ccExtenderCost = 7500;
         private int lineColourCost = 20000;
         private int rainbowLineCost = 100000;
 
@@ -49,8 +49,8 @@ namespace Owniel
         {
             UpdateSpeed();
             UpdateStonkBoost();
-            UpdateTurboStart();
-            UpdateLongStart();
+            UpdateClickCoin();
+            UpdateClickCoinExtender();
         }
 
         private void UpdateSpeed()
@@ -63,15 +63,15 @@ namespace Owniel
             stonkBoostCost = stonkBoostLevel * 2000;
             stonkBoostText.text = "Stonk boost " + stonkBoostLevel.ToString("0") + ": $" + stonkBoostCost;
         }
-        private void UpdateTurboStart()
+        private void UpdateClickCoin()
         {
-            turboStartCost = turboStartLevel * 5000;
-            turboStartText.text = "Turbo start " + turboStartLevel.ToString("0") + ": $" + turboStartCost;
+            clickCoinCost = clickCoinLevel * 5000;
+            turboStartText.text = "ClickCoin " + clickCoinLevel.ToString("0") + ": $" + clickCoinCost;
         }
-        private void UpdateLongStart()
+        private void UpdateClickCoinExtender()
         {
-            longStartCost = longStartLevel * 7500;
-            longStartText.text = "Long start " + longStartLevel.ToString("0") + ": $" + longStartCost;
+            ccExtenderCost = ccExtenderLevel * 7500;
+            longStartText.text = "ClickCoin Extender " + ccExtenderLevel.ToString("0") + ": $" + ccExtenderCost;
         }
 
         public void PlayAgain()
@@ -106,29 +106,29 @@ namespace Owniel
             }
         }
 
-        public void BuyTurboStart()
+        public void BuyClickCoin()
         {
-            if (GameManager.moneyEarned >= turboStartCost)
+            if (GameManager.moneyEarned >= clickCoinCost)
             {
                 GameManager.spamClickValue *= 2f;
-                GameManager.moneyEarned -= turboStartCost;
+                GameManager.moneyEarned -= clickCoinCost;
                 UpdateWalletText();
 
-                turboStartLevel++;
-                UpdateTurboStart();
+                clickCoinLevel++;
+                UpdateClickCoin();
             }
         }
 
-        public void BuyLongStart()
+        public void BuyClickCoinExtender()
         {
-            if (GameManager.moneyEarned >= longStartCost)
+            if (GameManager.moneyEarned >= ccExtenderCost)
             {
                 GameManager.spamClickTime += 2f;
-                GameManager.moneyEarned -= longStartCost;
+                GameManager.moneyEarned -= ccExtenderCost;
                 UpdateWalletText();
 
-                longStartLevel++;
-                UpdateLongStart();
+                ccExtenderLevel++;
+                UpdateClickCoinExtender();
             }
         }
 
