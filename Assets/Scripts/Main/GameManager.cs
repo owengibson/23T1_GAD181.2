@@ -19,10 +19,10 @@ namespace Owniel
         public static bool spamClickActive = true;
 
         // Upgradable
-        public static float lossRate = 0.2f; // In dollars per frame ($10/sec at 0.2)
+        public static float lossRate = 2.5f; // In dollars per frame ($10/sec at 0.2)
         public static float boosterWorth = 80f;
         public static float boosterSpawnWait = 1f;
-        public static float moveSpeed = 0.8f;
+        public static float moveSpeed = 8f;
         public static float spamClickTime = 3f;
         public static float spamClickValue = 10f;
         public static Color lineColour = new Color(0f, 207f / 255f, 1f, 1f);
@@ -47,7 +47,7 @@ namespace Owniel
 
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!spamClickActive)
             {
@@ -59,7 +59,7 @@ namespace Owniel
                 {
                     EventManager.OnGameOver?.Invoke();
                 }
-            }            
+            }
         }
 
         private IEnumerator SpamClicker()

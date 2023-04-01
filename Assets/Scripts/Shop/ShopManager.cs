@@ -84,7 +84,7 @@ namespace Owniel
         {
             if (GameManager.moneyEarned >= speedCost)
             {
-                GameManager.moveSpeed += 0.3f;
+                GameManager.moveSpeed += 3f;
                 GameManager.moneyEarned -= speedCost;
                 UpdateWalletText();
 

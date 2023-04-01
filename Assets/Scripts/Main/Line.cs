@@ -47,7 +47,7 @@ namespace Owniel
             }
 
         }
-        private void Update()
+        private void FixedUpdate()
         {
             if (!GameManager.spamClickActive && !GM.isGameOver)
             {
