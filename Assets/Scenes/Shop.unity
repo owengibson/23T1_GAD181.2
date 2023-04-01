@@ -3991,7 +3991,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 832097863}
         m_TargetAssemblyTypeName: Owniel.ShopManager, Assembly-CSharp
-        m_MethodName: BuyLongStart
+        m_MethodName: BuyClickCoinExtender
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5610,7 +5610,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 832097863}
         m_TargetAssemblyTypeName: Owniel.ShopManager, Assembly-CSharp
-        m_MethodName: BuyTurboStart
+        m_MethodName: BuyClickCoin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

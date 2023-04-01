@@ -18,10 +18,13 @@ namespace Owniel
         public static float moneyEarned = 0f;
         public static bool spamClickActive = true;
 
+        //Scaling
+        public static float boosterSpawnWait = 1.5f;
+        public static float boosterLifespan = 2f;
+
         // Upgradable
         public static float lossRate = 2.5f; // In dollars per frame ($10/sec at 0.2)
         public static float boosterWorth = 80f;
-        public static float boosterSpawnWait = 1f;
         public static float moveSpeed = 8f;
         public static float spamClickTime = 3f;
         public static float spamClickValue = 10f;
@@ -59,7 +62,15 @@ namespace Owniel
                 {
                     EventManager.OnGameOver?.Invoke();
                 }
+                //Scaling stonk booster spawn wait with time lasted
+                if (boosterSpawnWait >= 0.03f) boosterSpawnWait = 1.5f - (timeLasted * 0.035f);
+
+                // Scaling stonk booster lifespan with time lasted
+                if (timeLasted <= 20f) boosterLifespan = 2f - (timeLasted * 0.025f); // This will take lifespan down to 1.5s by 20s
+                else if (timeLasted <= 40f) boosterLifespan = 2.5f - (timeLasted * 0.05f); // This will take lifespan down to 0.5s by 40s
+                Debug.Log(boosterLifespan);
             }
+
         }
 
         private IEnumerator SpamClicker()
@@ -83,6 +94,8 @@ namespace Owniel
             moneyEarned = 0f;
             timeLasted = 0f;
             spamClickActive = true;
+            boosterSpawnWait = 1.5f;
+            boosterLifespan = 2f;
         }
 
         private void BoostMoney()

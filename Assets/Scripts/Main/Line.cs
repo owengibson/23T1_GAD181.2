@@ -55,11 +55,6 @@ namespace Owniel
                 lineXPos = line.position.x + (0.01f * GameManager.moveSpeed);
 
                 line.position = new Vector2(lineXPos, lineYPos);
-
-                if (Input.GetKeyDown(KeyCode.F12))
-                {
-                    GM.moneyRemaining += 50f;
-                }
             }
             
         }
@@ -93,6 +88,13 @@ namespace Owniel
             GameManager.lineColour = defaultLineColour;
             headMat.color = defaultLineColour;
             headMat.SetColor("_EmissionColour", defaultLineColour);
+        }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F12))
+            {
+                GM.moneyRemaining += 50f;
+            }
         }
     }
 }

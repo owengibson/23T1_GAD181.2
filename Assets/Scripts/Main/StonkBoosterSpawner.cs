@@ -10,20 +10,20 @@ namespace Owniel
         [SerializeField] private Transform canvas;
         [SerializeField] private GameObject stonkBoosterPrefab;
 
-        private float timeSinceSpawn;
+        private float timeSinceLastBooster;
         private GameObject activeBooster;
 
         private void Start()
         {
-            timeSinceSpawn = 0f;
+            timeSinceLastBooster = 0f;
         }
         private void Update()
         {
             if (!GameManager.spamClickActive)
             {
-                timeSinceSpawn += Time.deltaTime;
+                timeSinceLastBooster += Time.deltaTime;
 
-                if (timeSinceSpawn >= GameManager.boosterSpawnWait && activeBooster == null)
+                if (timeSinceLastBooster >= GameManager.boosterSpawnWait && activeBooster == null)
                 {
                     Vector2 spawnPos = new Vector2(Random.Range(-600f, 660f), Random.Range(-220f, 270f));
                     Quaternion spawnRot = Quaternion.Euler(0, 0, Random.Range(-30f, 30f));
@@ -31,10 +31,23 @@ namespace Owniel
                     activeBooster = Instantiate(stonkBoosterPrefab, canvas);
                     activeBooster.transform.localPosition = spawnPos;
                     activeBooster.transform.localRotation = spawnRot;
-
-                    timeSinceSpawn = 0f;
                 }
             }
+        }
+
+        private void ResetTimeSinceLastBooster()
+        {
+            timeSinceLastBooster = 0f;
+        }
+        private void OnEnable()
+        {
+            EventManager.OnBoosterMiss += ResetTimeSinceLastBooster;
+            EventManager.OnBoosterPickup += ResetTimeSinceLastBooster;
+        }
+        private void OnDisable()
+        {
+            EventManager.OnBoosterMiss -= ResetTimeSinceLastBooster;
+            EventManager.OnBoosterPickup -= ResetTimeSinceLastBooster;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Owniel
         private string chosenKey;
         private KeyCode chosenKeyCode;
 
-        private float lifespan = 2f;
+        private float timeUntilDeath;
 
         private void Awake()
         {
@@ -32,12 +32,14 @@ namespace Owniel
 
             keyText = GetComponentInChildren<TextMeshProUGUI>();
             keyText.text = chosenKey;
+
+            timeUntilDeath = GameManager.boosterLifespan;
         }
 
         private void Update()
         {
-            lifespan -= Time.deltaTime;
-            if (lifespan <= 0)
+            timeUntilDeath -= Time.deltaTime;
+            if (timeUntilDeath <= 0)
             {
                 EventManager.OnBoosterMiss?.Invoke();
                 Destroy(gameObject);
