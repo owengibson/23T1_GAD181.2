@@ -31,6 +31,7 @@ namespace Owniel
                     activeBooster = Instantiate(stonkBoosterPrefab, canvas);
                     activeBooster.transform.localPosition = spawnPos;
                     activeBooster.transform.localRotation = spawnRot;
+                    activeBooster.transform.SetAsFirstSibling();
                 }
             }
         }

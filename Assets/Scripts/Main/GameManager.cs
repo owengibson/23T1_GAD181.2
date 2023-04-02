@@ -26,7 +26,7 @@ namespace Owniel
         public static float lossRate = 2.5f; // In dollars per frame ($10/sec at 0.2)
         public static float boosterWorth = 80f;
         public static float moveSpeed = 8f;
-        public static float spamClickTime = 3f;
+        public static int spamClickTime = 3;
         public static float spamClickValue = 10f;
         public static Color lineColour = new Color(0f, 207f / 255f, 1f, 1f);
         public static bool hasRainbowLine = false;

@@ -123,7 +123,7 @@ namespace Owniel
         {
             if (GameManager.moneyEarned >= ccExtenderCost)
             {
-                GameManager.spamClickTime += 2f;
+                GameManager.spamClickTime += 2;
                 GameManager.moneyEarned -= ccExtenderCost;
                 UpdateWalletText();
 
