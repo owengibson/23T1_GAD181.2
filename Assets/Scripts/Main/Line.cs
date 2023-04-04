@@ -69,7 +69,7 @@ namespace Owniel
 
             while (GameManager.hasRainbowLine)
             {
-                for (float interpolant = 0f; interpolant < 1f; interpolant += 0.01f)
+                for (float interpolant = 0f; interpolant < 1f; interpolant += 0.1f)
                 {
                     headMat.color = Color.Lerp(colors[i%7], colors[(i + 1)%7], interpolant);
                     headMat.SetColor("_EmissionColor", Color.Lerp(colors[i%7], colors[(i + 1)%7], interpolant));
