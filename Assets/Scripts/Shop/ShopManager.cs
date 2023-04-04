@@ -77,7 +77,14 @@ namespace Owniel
         public void PlayAgain()
         {
             GameManager.bonusStartingMoney = GameManager.moneyEarned / 4f;
-            SceneManager.LoadScene("Main");
+            StartCoroutine(PlaySceneAfterTime("Main", 0.25f));
+        }
+
+        private IEnumerator PlaySceneAfterTime(string name, float time)
+        {
+            yield return new WaitForSecondsRealtime(time);
+            SceneManager.LoadScene(name);
+            yield break;
         }
 
         public void BuySpeed()
